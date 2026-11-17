@@ -9,22 +9,24 @@ class Program
 {
     static void Main(string[] args)
     {
-        int[] nums = new int[] { -10, -1, 0, 1, 2, 3, 4, 5 };
+        int[] nums = new int[] { -10, -1, 0, 0, 1, 2, 3, 4, 5 };
         int[] outNums = new int[nums.Length];
         int baseNum = 1;
+        int zeroNum = 1;
 
-        for (int i = 0; i < nums.Length; i++)
+        for(int i=0; i<nums.Length; i++)
         {
-            for (int j = 0; j < nums.Length; j++)
-            {
-                if (i == j)
-                    continue;
+            baseNum *= nums[i];
+            if (nums[i] != 0)
+                zeroNum *= nums[i];
+        }
 
-                baseNum *= nums[j];
-            }
-
-            outNums[i] = baseNum;
-            baseNum = 1;
+        for(int i=0; i<nums.Length; i++)
+        {
+            if (nums[i] == 0)
+                outNums[i] = zeroNum;
+            else
+                outNums[i] = baseNum / nums[i];
         }
 
         Console.Write("nums: ");
